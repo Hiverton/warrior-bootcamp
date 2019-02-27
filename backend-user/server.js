@@ -7,6 +7,8 @@ const user = require("./routes/api/user");
 const profile = require("./routes/api/profile");
 const post = require("./routes/api/post");
 
+const allowCors = require('./config/cors')
+
 // Logging Configuration
 var morgan = require('morgan');
 var uuid = require('node-uuid');
@@ -22,6 +24,7 @@ app.use(
     skip: function (req, res) { return req.url === "/test" }
   })
 );
+app.use(allowCors)
 
 function assignId (req, res, next) {
   req.id = uuid.v4()
